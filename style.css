@@ -3,5 +3,5 @@
 @tailwind components;
 @tailwind utilities;
 .data {
-    @apply flex flex-col;
+    @apply flex flex-col p-2;
 }
