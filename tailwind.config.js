@@ -1,18 +1,19 @@
 module.exports = {
   purge: {
-    enabled: true,
-    content: ["src/*.html"],
+    // enabled: process.env.NODE_ENV === 'production',
+    // enabled:true,
+    content: [
+      'src/**/*.html'
+    ]
   },
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {
-      colors: {
-        'daily-dev-tips': "#F89283"
-      }
-    },
+    extend: {},
   },
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms')
+  ],
 }

@@ -1,19 +1,32 @@
 {
-  "name": "html-tailwind-starter",
+  "name": "zakat-final",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "postcss styles.css -o src/styles.css",
-    "dev": "npm run build && live-server src --port=8080"
+    "dev": "postcss src/style.css",
+    "build": "NODE_ENV=production postcss src/style.css -o src/main.css",
+    "live":"postcss src/style.css -o src/main.css &&  live-server src/"
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rebelchris/HTML-Tailwind-Starter.git"
+  },
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rebelchris/HTML-Tailwind-Starter/issues"
+  },
+  "homepage": "https://github.com/rebelchris/HTML-Tailwind-Starter#readme",
+  "devDependencies": {
+    "@fullhuman/postcss-purgecss": "^4.0.2",
+    "autoprefixer": "^10.2.5",
+    "postcss": "^8.2.8",
+    "tailwindcss": "^2.0.4"
+  },
   "dependencies": {
-    "autoprefixer": "^10.2.4",
     "postcss-cli": "^8.3.1",
-    "tailwindcss": "^2.0.3"
+    "@tailwindcss/forms": "^0.2.1"
   }
 }

@@ -1,0 +1,42 @@
+/* ./your-css-folder/styles.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.single-field {
+    @apply grid grid-cols-1 gap-2;
+}
+
+.data {
+    @apply grid grid-cols-1 gap-1;
+}
+
+p {
+    @apply text-2xl;
+}
+
+/* input [type="number"]{
+    appearance: none;
+} */
+
+@layer base {
+    [type="number"] {
+        @apply mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50;
+    }
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+input:invalid{
+    @apply focus: border-red-500 focus:ring focus:ring-red-300 focus:ring-opacity-50;
+}
