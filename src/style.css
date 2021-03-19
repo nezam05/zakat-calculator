@@ -38,5 +38,5 @@ input[type=number] {
 }
 
 input:invalid{
-    @apply focus: border-red-500 focus:ring focus:ring-red-300 focus:ring-opacity-50;
+    @apply border-red-500 focus:ring focus:ring-red-300 focus:ring-opacity-50;
 }
