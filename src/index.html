@@ -11,8 +11,8 @@
 </head>
 
 <body>
-    <section class="lg:px-80 pt-20 px-10">
-        <div class="flex flex-col justify-center">
+    <section class="lg:px-80 pt-20 px-10 mb-10">
+        <div class="flex flex-col justify-center mb-8">
             <h2 class="text-2xl text-gray-900 text-center">Zakat Calculator</h2>
             <span class="text-gray-500 text-center">Calculate your zakat easily</span>
         </div>
@@ -124,23 +124,26 @@
                         <input type="number" min='0' id="zakat-field18" class="form-field" placeholder="Other loans in BDT">
                     </div>
                 </div>
-                <div class="basis" class="single-field">
-                    <p> BASE NISAB ON VALUE OF: </p>
+                <div class="basis grid grid-cols-1 p-2 rounded sm:grid-cols-2">
+                    <p> Base Nisab On Value Of: </p>
                     <div><input type="radio" name="basis" id="gold" onchange="changed(this)" value="480675"><label
-                            for="gold">Gold</label>
-                        <input type="radio" name="basis" id="silver" onchange="changed(this)" value="73185"><label
-                            for="silver">Silver</label>
+                            for="gold" class="ml-2 text-lg">Gold</label>
+                        <input type="radio" name="basis" id="silver" onchange="changed(this)" value="73185" class="ml-3"><label
+                            for="silver" class="ml-2 text-lg">Silver</label>
                     </div>
                 </div>
                 <div class="submit grid grid-cols-2">
                     <button type="submit"
-                        class="w-1/2 px-3 py-4 text-white bg-indigo-500 rounded-md focus:bg-indigo-600 focus:outline-none">Calculate</button>
-                    <button type="reset" class="w-1/2 px-3 py-4 text-white bg-red-400 rounded-md focus:bg-indigo-600 focus:outline-none">Reset</button>
+                        class="w-3/4 px-3 py-2 text-white bg-indigo-500 rounded-md focus:bg-indigo-600 focus:outline-none sm:py-4">Calculate</button>
+                    <button type="reset" class="w-3/4 px-3 py-4 text-white bg-red-400 rounded-md hover:bg-indigo-600 ">Reset</button>
                 </div>
-                <div id="output" class="displayNone">
-                    <p>Total Zakatable Asset: <span id="totalZakatableAsset"></span></p>
-                    <p>Total Liabilities: <span id="totalLiablity"></span></p>
-                    <p>Zakat Amount: <span id="result"></span></p>
+                <div id="output" class="hidden grid grid-cols-3 gap-2 bg-blue-400 bg-opacity-10 p-3 rounded">
+                    <p class="mb-2 text-lg">Zakatable Asset</p> 
+                    <p class="mb-2 text-lg">Liabilities</p>
+                    <p class="mb-2 text-lg">Zakat Amount</p>
+                    <p id="totalZakatableAsset" class="text-black"></p>
+                    <p id="totalLiablity" class="text-black"></p>
+                    <p id="result" class="text-lg text-black"></p>
                 </div>
             </div>
         </form>
@@ -150,8 +153,8 @@
     const form = document.querySelector('form');
     form.addEventListener('submit', calcZakat);
     form.addEventListener('reset', event => {
-        document.getElementById('output').classList.remove('displayBlock')
-        document.getElementById('output').classList.add('displayNone')
+        document.getElementById('output').classList.remove('block')
+        document.getElementById('output').classList.add('hidden')
         document.querySelector('.basis').style.backgroundColor = '';
     })
     function calcZakat(event) {
@@ -171,7 +174,7 @@
 
         let calculationBasis = parseInt(form['basis'].value);
         if (zakatableAmount > calculationBasis) {
-            result = (totalAsset - totalLiablity) * 0.025
+            result = "BDT " +((totalAsset - totalLiablity) * 0.025)
         } else {
             result = "Below Nesab amount"
         }
@@ -192,11 +195,12 @@
     }
 
     function publishResult(totalAsset, totalLiablity, result) {
-        document.getElementById('totalZakatableAsset').textContent = totalAsset.toLocaleString();
-        document.getElementById('totalLiablity').textContent = totalLiablity.toLocaleString();
+        document.getElementById('totalZakatableAsset').textContent = "BDT " +totalAsset.toLocaleString();
+        document.getElementById('totalLiablity').textContent = "BDT " +totalLiablity.toLocaleString();
         document.getElementById('result').textContent = result.toLocaleString();
-        document.getElementById('output').classList.remove('displayNone');
-        document.getElementById('output').classList.add('displayBlock');
+        document.getElementById('output').classList.remove('hidden');
+        document.getElementById('output').classList.add(...['block','animate-pulse']);
+        document.getElementById('output').scrollIntoView({behavior: "smooth", block: "end", inline: "end"});
     }
 
 </script>
